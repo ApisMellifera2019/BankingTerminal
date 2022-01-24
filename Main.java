@@ -25,7 +25,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    User user = new User(null,null,1111,0,0);
+                    User user = new User(null, null, 1111, 0, 0);
 
                     System.out.println("Enter your name");
                     user.setName(scanner.next());                       //ПОЧЕМУ ПРОПУСКАЕТ NEXTLINE?
@@ -46,34 +46,41 @@ public class Main {
                     System.out.println("Enter your password");
                     int verificationPassword = scanner.nextInt();
 
-                    for (User u:users) {
+                    for (User u : users) {
 
-                        if((verificationName.equals(u.getName())) && (verificationPassword == u.getPassword())){
-                            System.out.println("[1] Viev balance");
-                            System.out.println("[2] Put money on the card");
-                            System.out.println("[3] Exit");
+                        if ((verificationName.equals(u.getName())) && (verificationPassword == u.getPassword())) {
 
-                            int userChoice = scanner.nextInt();
-                            if (userChoice < 1 || userChoice > 3)
-                                continue;
+                            boolean flag = true;
+                            while (flag) {
+                                System.out.println("[1] Viev balance");
+                                System.out.println("[2] Put money on the card");
+                                System.out.println("[3] Exit");
 
-                            switch (userChoice) {
-                                case 1:
-                                    System.out.println("Your balance is " + u.getAccountAmount() + "$");
-                                    break;
-                                case 2:
-                                    System.out.println("Enter amount");
-                                    int sum = scanner.nextInt();
-                                    System.out.println("You deposited " + sum + "$");
-                                    u.setAccountAmount(u.getAccountAmount()+sum);
-                                    break;
+                                int userChoice = scanner.nextInt();
+                                if (userChoice < 1 || userChoice > 3)
+                                    continue;
+
+                                switch (userChoice) {
+                                    case 1:
+                                        System.out.println("Your balance is " + u.getAccountAmount() + "$");
+                                        continue;
+                                    case 2:
+                                        System.out.println("Enter amount");
+                                        int sum = scanner.nextInt();
+                                        System.out.println("You deposited " + sum + "$");
+                                        u.setAccountAmount(u.getAccountAmount() + sum);
+                                        break;
+                                    case 3:
+                                        flag = false;
+                                        break;
+                                }
+
                             }
 
                         }
-                        }
 
                     }
-
+                }
             }
         }
     }
